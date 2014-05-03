@@ -7,12 +7,17 @@
 //
 
 #import "RHAppDelegate.h"
+#import "UIFont+OpenSans.h"
 
 @implementation RHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[UILabel appearance] setFont:[UIFont openSansRegularFontOfSize:16.0]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{
+        NSForegroundColorAttributeName: [UIColor colorWithRed:0.0 green:129.0/255.0 blue:174.0/255.0 alpha:1.0],
+        NSFontAttributeName: [UIFont openSansSemiBoldFontOfSize:18]
+    }];
     return YES;
 }
 							

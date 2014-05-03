@@ -8,8 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RHRoute : NSObject
+typedef enum {
+    RHRouteGroundTypeGravel,
+    RHRouteGroundTypeDirt,
+    RHRouteGroundTypeAsphalt
+} RHRouteGroundType;
 
+@interface RHRoute : NSObject <NSCoding>
+
+@property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *steps;
+@property (assign, nonatomic) RHRouteGroundType groundType;
+@property (assign, nonatomic) NSTimeInterval estimatedTime;
+
+- (id)initWithName:(NSString *)name routeSteps:(NSArray *)routeSteps groundType:(RHRouteGroundType)groundType estimatedTime:(NSTimeInterval)estimatedTime;
+
 
 @end

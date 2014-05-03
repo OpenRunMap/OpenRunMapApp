@@ -1,5 +1,5 @@
 //
-//  RHViewController.h
+//  RHRouteTableViewCell.h
 //  OpenRunMap
 //
 //  Created by Robin Goos on 03/05/14.
@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RHRoute.h"
 
-@interface RHViewController : UIViewController
+@interface RHRouteTableViewCell : UITableViewCell
+
+@property (strong, nonatomic) RHRoute *route;
 
 @end

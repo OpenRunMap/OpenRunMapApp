@@ -1,0 +1,19 @@
+{
+    "name": "Sample route",
+    "estimated_time": 12391,
+    "ground_type": 0,
+    "steps": [
+        {
+            "type": 1,
+            "coordinates": [
+              
+            ]
+        },
+        {
+            "type": 0,
+            "coordinates": [
+            
+            ]
+        }
+    ]
+}

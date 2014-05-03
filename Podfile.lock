@@ -1,0 +1,10 @@
+PODS:
+  - TheSidebarController (0.6)
+
+DEPENDENCIES:
+  - TheSidebarController
+
+SPEC CHECKSUMS:
+  TheSidebarController: 3623bf4f9e0c0f86f51256b0fb0ec3350e95decb
+
+COCOAPODS: 0.32.1

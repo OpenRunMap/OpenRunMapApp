@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+@import MapKit.MKPolyline;
+#import "MKPolyline+NSCodingAdditions.h"
 
-@interface RHRouteStep : NSObject
+typedef enum {
+    RHRouteStepTypeLeftTurn,
+    RHRouteStepTypeForward,
+    RHRouteStepTypeRightTurn
+} RHRouteStepType;
+
+@interface RHRouteStep : NSObject <NSCoding>
+
+@property (strong, nonatomic) MKPolyline *polyline;
+@property (assign, nonatomic) RHRouteStepType type;
+
+- (id)initWithPolyline:(MKPolyline *)polyline type:(RHRouteStepType)type;
 
 @end
