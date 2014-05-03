@@ -1,10 +1,13 @@
 PODS:
+  - MBXMapKit (0.2.1)
   - TheSidebarController (0.6)
 
 DEPENDENCIES:
+  - MBXMapKit
   - TheSidebarController
 
 SPEC CHECKSUMS:
+  MBXMapKit: ddbf1945d8f640f6db3411a41ffcfe1b132497a5
   TheSidebarController: 3623bf4f9e0c0f86f51256b0fb0ec3350e95decb
 
 COCOAPODS: 0.32.1

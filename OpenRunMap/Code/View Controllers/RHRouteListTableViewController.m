@@ -7,7 +7,9 @@
 //
 
 #import "RHRouteListTableViewController.h"
+#import <TheSidebarController/TheSidebarController.h>
 #import "RHRouteTableViewCell.h"
+#import "RHRoute.h"
 
 static NSString * const kRouteTableViewCellIdentifier = @"RHRouteCell";
 
@@ -36,16 +38,6 @@ static NSString * const kRouteTableViewCellIdentifier = @"RHRouteCell";
 
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    RHRoute *sampleRoute = [[RHRoute alloc] initWithName:@"Sample route" routeSteps:nil groundType:RHRouteGroundTypeDirt estimatedTime:1231];
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.routes addObject:sampleRoute];
-    [self.tableView endUpdates];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -70,6 +62,56 @@ static NSString * const kRouteTableViewCellIdentifier = @"RHRouteCell";
     cell.route = self.routes[indexPath.row];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RHRouteTableViewCell *cell = (RHRouteTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    NSNotification *routeNotification = [NSNotification notificationWithName:@"com.runhackers.openrunmap.routepicked" object:cell.route];
+    [[NSNotificationCenter defaultCenter] postNotification:routeNotification];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Refreshing
+- (void)updateTableViewWithRoutes:(NSArray *)routes
+{
+    [self.tableView beginUpdates];
+    [self.routes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:idx inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+    [self.routes removeAllObjects];
+    
+    [routes enumerateObjectsUsingBlock:^(RHRoute *route, NSUInteger idx, BOOL *stop) {
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:idx inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.routes addObject:route];
+    }];
+    
+    [self.tableView endUpdates];
+}
+
+- (void)fetchLatestRoutes:(void (^)(NSArray *routes))completionBlock
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"sample_route" ofType:@"json"];
+        
+        NSInputStream *jsonStream = [NSInputStream inputStreamWithFileAtPath:path];
+        [jsonStream open];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithStream:jsonStream options:NSJSONReadingAllowFragments error:nil];
+        
+        RHRoute *route = [RHRoute fromJSON:json];
+        [NSThread sleepForTimeInterval:0.6];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(@[route]);
+        });
+    });
+}
+
+- (IBAction)refreshControlValueChanged:(UIRefreshControl *)refreshControl
+{
+    [self fetchLatestRoutes:^(NSArray *routes) {
+        [self updateTableViewWithRoutes:routes];
+        [refreshControl endRefreshing];
+    }];
 }
 
 @end

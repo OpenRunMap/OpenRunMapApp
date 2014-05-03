@@ -34,23 +34,13 @@
     [self addChildViewController:self.sidebarController];
     [self.sidebarController didMoveToParentViewController:self];
     
-    self.sidebarController.leftSidebarViewController.view.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame) - 66.0, CGRectGetHeight(self.view.frame));
-    
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground)];
-    [self.view addGestureRecognizer:recognizer];
+    self.sidebarController.leftSidebarViewController.view.frame = CGRectMake(0.0, 20.0, CGRectGetWidth(self.view.frame) - 66.0, CGRectGetHeight(self.view.frame) - 20.0);
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)didTapBackground
-{
-    if (self.sidebarController.sidebarIsPresenting) {
-        [self.sidebarController dismissSidebarViewController];
-    }
 }
 
 @end

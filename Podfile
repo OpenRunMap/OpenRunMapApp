@@ -1,1 +1,2 @@
 pod "TheSidebarController"
+pod "MBXMapKit"

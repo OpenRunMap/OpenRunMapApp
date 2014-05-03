@@ -11,6 +11,8 @@
 #import "MKPolyline+NSCodingAdditions.h"
 
 typedef enum {
+    RHRouteStepTypeStart,
+    RHRouteStepTypeFinish,
     RHRouteStepTypeLeftTurn,
     RHRouteStepTypeForward,
     RHRouteStepTypeRightTurn
@@ -21,6 +23,7 @@ typedef enum {
 @property (strong, nonatomic) MKPolyline *polyline;
 @property (assign, nonatomic) RHRouteStepType type;
 
++ (instancetype)fromJSON:(id)json;
 - (id)initWithPolyline:(MKPolyline *)polyline type:(RHRouteStepType)type;
 
 @end

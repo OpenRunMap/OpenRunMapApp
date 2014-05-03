@@ -10,6 +10,23 @@
 
 @implementation RHRouteStep
 
++ (instancetype)fromJSON:(id)json
+{
+    RHRouteStepType type = (RHRouteStepType)[json[@"type"] integerValue];
+    NSArray *jsonCoords = json[@"coordinates"];
+    CLLocationCoordinate2D *coords = malloc(sizeof(CLLocationCoordinate2D) * jsonCoords.count);
+    [jsonCoords enumerateObjectsUsingBlock:^(NSDictionary *jsonCoord, NSUInteger idx, BOOL *stop) {
+        CLLocationDegrees lat = [jsonCoord[@"lat"] doubleValue];
+        CLLocationDegrees lon = [jsonCoord[@"lon"] doubleValue];
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(lat, lon);
+        coords[idx] = coord;
+    }];
+    
+    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coords count:jsonCoords.count];
+
+    return [[self alloc] initWithPolyline:polyline type:type];
+}
+
 - (id)initWithPolyline:(MKPolyline *)polyline type:(RHRouteStepType)type
 {
     self = [super init];

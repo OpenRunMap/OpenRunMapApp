@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RHSettingsMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface RHSettingsMenuViewController : UIViewController
 
 @end

@@ -12,24 +12,17 @@
 @interface RHSettingsMenuViewController ()
 
 @property (weak, nonatomic) RHRouteListTableViewController *routeListController;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 
 @end
 
 @implementation RHSettingsMenuViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.profileImageView.layer.cornerRadius = 40.0;
+    self.profileImageView.layer.masksToBounds = YES;
     // Do any additional setup after loading the view.
 }
 

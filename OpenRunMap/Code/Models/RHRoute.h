@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RHRouteStep.h"
 
 typedef enum {
     RHRouteGroundTypeGravel,
@@ -21,7 +22,10 @@ typedef enum {
 @property (assign, nonatomic) RHRouteGroundType groundType;
 @property (assign, nonatomic) NSTimeInterval estimatedTime;
 
++ (instancetype)fromJSON:(id)json;
 - (id)initWithName:(NSString *)name routeSteps:(NSArray *)routeSteps groundType:(RHRouteGroundType)groundType estimatedTime:(NSTimeInterval)estimatedTime;
 
+- (MKPolyline *)polyline;
+- (MKMapRect)boundingMapRect;
 
 @end

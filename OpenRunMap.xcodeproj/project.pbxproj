@@ -42,6 +42,8 @@
 		F64450761914E14500630C5A /* UIFont+OpenSans.m in Sources */ = {isa = PBXBuildFile; fileRef = F64450751914E14500630C5A /* UIFont+OpenSans.m */; };
 		F64450791914E31B00630C5A /* RHRouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F64450781914E31B00630C5A /* RHRouteTableViewCell.m */; };
 		F644507C1914F5D000630C5A /* RHRouteListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F644507B1914F5D000630C5A /* RHRouteListTableViewController.m */; };
+		F6FEEBAF19153CB90001C354 /* NSTimer+BlockAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FEEBAE19153CB90001C354 /* NSTimer+BlockAdditions.m */; };
+		F6FEEBB1191547460001C354 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6FEEBB0191547460001C354 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,9 @@
 		F64450781914E31B00630C5A /* RHRouteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHRouteTableViewCell.m; sourceTree = "<group>"; };
 		F644507A1914F5D000630C5A /* RHRouteListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHRouteListTableViewController.h; sourceTree = "<group>"; };
 		F644507B1914F5D000630C5A /* RHRouteListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHRouteListTableViewController.m; sourceTree = "<group>"; };
+		F6FEEBAD19153CB90001C354 /* NSTimer+BlockAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTimer+BlockAdditions.h"; path = "OpenRunMap/Code/Categories/NSTimer+BlockAdditions.h"; sourceTree = SOURCE_ROOT; };
+		F6FEEBAE19153CB90001C354 /* NSTimer+BlockAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+BlockAdditions.m"; path = "OpenRunMap/Code/Categories/NSTimer+BlockAdditions.m"; sourceTree = SOURCE_ROOT; };
+		F6FEEBB0191547460001C354 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6FEEBB1191547460001C354 /* AVFoundation.framework in Frameworks */,
 				F644504D1914CA2C00630C5A /* MapKit.framework in Frameworks */,
 				F64450071914C14400630C5A /* CoreGraphics.framework in Frameworks */,
 				F64450091914C14500630C5A /* UIKit.framework in Frameworks */,
@@ -155,6 +161,7 @@
 		F64450031914C14400630C5A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F6FEEBB0191547460001C354 /* AVFoundation.framework */,
 				F644504C1914CA2C00630C5A /* MapKit.framework */,
 				F64450041914C14400630C5A /* Foundation.framework */,
 				F64450061914C14400630C5A /* CoreGraphics.framework */,
@@ -253,6 +260,8 @@
 		F64450511914D22400630C5A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				F6FEEBAD19153CB90001C354 /* NSTimer+BlockAdditions.h */,
+				F6FEEBAE19153CB90001C354 /* NSTimer+BlockAdditions.m */,
 				F64450741914E14500630C5A /* UIFont+OpenSans.h */,
 				F64450751914E14500630C5A /* UIFont+OpenSans.m */,
 				F644504E1914D06D00630C5A /* MKPolyline+NSCodingAdditions.h */,
@@ -345,6 +354,13 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = RunHackers;
 				TargetAttributes = {
+					F64450001914C14400630C5A = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					F64450211914C14500630C5A = {
 						TestTargetID = F64450001914C14400630C5A;
 					};
@@ -449,6 +465,7 @@
 				F64450501914D06D00630C5A /* MKPolyline+NSCodingAdditions.m in Sources */,
 				F644504B1914C3FA00630C5A /* RHRouteStep.m in Sources */,
 				F64450761914E14500630C5A /* UIFont+OpenSans.m in Sources */,
+				F6FEEBAF19153CB90001C354 /* NSTimer+BlockAdditions.m in Sources */,
 				F644507C1914F5D000630C5A /* RHRouteListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

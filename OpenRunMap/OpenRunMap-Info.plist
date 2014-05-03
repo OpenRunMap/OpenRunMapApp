@@ -37,6 +37,10 @@
 		<string>OpenSans-Light.ttf</string>
 		<string>OpenSans-Semibold.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
